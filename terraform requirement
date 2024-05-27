@@ -14,3 +14,8 @@ refreshenv
 ###to verfy my package has been installed or not 
 terraform --version 
 git --version
+
+###how to loging to azure 
+az login 
+###if this dont work use the tenantid from entra
+ az login --tenant 961e4a55-c338-498d-a310-544a2b8c027easdkjuhlgsadjukhglsaduj
