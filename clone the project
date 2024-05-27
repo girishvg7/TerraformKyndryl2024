@@ -1,0 +1,5 @@
+git clone https://gitlab.com/gopal1409/ken-batch-4-manifest-24.git
+cd ken-batch-4-manifest-24
+###modify the file 
+a1.provider.tf 
+##change all the client id 
