@@ -9,7 +9,8 @@
   63 ls
   cd ..
   ##before you need to login you need to modify the password authentication
-  
+  terraform apply
+  cd ssh-key
   #change the public ip to your ip
   64 ssh -i .\terraform-azure.pem azureuser@20.49.45.44
   cd ..
