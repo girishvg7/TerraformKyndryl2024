@@ -1,0 +1,15 @@
+56 mkdir ssh-key
+  57 cd .\ssh-key\
+  ##just press enter enter this will generate they key 
+  58 ssh-keygen -m PEM -t rsa -b 4096 -C "azureuser@myserver" -f terraform-azure.pem
+  59 ls
+  60 cat .\terraform-azure.pem
+  61 ls
+  62 mv .\terraform-azure.pem.pub .\terraform-azure.pub
+  63 ls
+  cd ..
+  ##before you need to login you need to modify the password authentication
+  
+  #change the public ip to your ip
+  64 ssh -i .\terraform-azure.pem azureuser@20.49.45.44
+  cd ..
