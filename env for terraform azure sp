@@ -1,5 +1,5 @@
-22 $env:ARM_CLIENT_ID = "12c0db5b-d8ec-4d6b-b79b-ds6c5d5fa8153b"
-  23 $env:ARM_CLIENT_SECRET = "MH~8Q~RVoGxuhKw0xjmIHuYidi~jdWmyfnIL8cHu"
-  24 $env:ARM_TENANT_ID = "961e4a55-c338-498d-a310-544a2b8c027e"
+$env:ARM_CLIENT_ID = "12c0db5b-d8ec-4d6b-b79b-ds6c5d5fa8153b"
+$env:ARM_CLIENT_SECRET = "MH~8Q~RVoGxuhKw0xjmIHuYidi~jdWmyfnIL8cHu"
+$env:ARM_TENANT_ID = "961e4a55-c338-498d-a310-544a2b8c027e"
   25 $env:ARM_SUBSCRIPTION_ID="7bef013d-f919-4788-8894-8b701cd4ecbc"
   26 gci env:ARM_*
