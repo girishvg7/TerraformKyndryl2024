@@ -1,0 +1,10 @@
+terraform apply --var-file=makemytrip.tfvars
+terraform apply --var-file=goibibo.tfvars
+###the above mentioned will create the infra with the new tfvars file and it will overwrite the default value
+#you can create an .auto.tfvars file this file will overwrite the default value 
+terraform apply 
+####the above mentioned will overwrite the default value and pick this 
+
+
+while destroying also if you have created your resource using a tfvars file provide the refrence
+terraform destroy --var-file=goibibo.tfvars
