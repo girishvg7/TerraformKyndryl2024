@@ -1,0 +1,7 @@
+##first we will generate ssh key
+
+ssh-keygen -t rsa
+##just press enter enter enter 
+#you will get the path of ssh key 
+cat C:\Users\gopal/.ssh/id_rsa.pub
+####cat will display the publci key 
