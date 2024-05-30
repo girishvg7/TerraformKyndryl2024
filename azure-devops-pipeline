@@ -5,3 +5,18 @@ ssh-keygen -t rsa
 #you will get the path of ssh key 
 cat C:\Users\gopal/.ssh/id_rsa.pub
 ####cat will display the publci key 
+##lets upload the code inside your azure repo. 
+#first we will delete the git refrence as it contains my refrence
+4 rm .git
+##git status will show that this is not a git repo 
+   5 git status
+   ##we will put saome global variables
+   6 git config --global user.name "gopal"
+   7 git config --global user.email "gopal1409@gmail.com"
+   ##lets reinitlzied the directory
+   8 git init
+   9 git status
+  10 git add .
+  11 git commit -m "terraform with azure devops"
+  ##finally the git status will show me a new commit
+  12 git status
