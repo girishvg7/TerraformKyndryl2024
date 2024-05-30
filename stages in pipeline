@@ -22,4 +22,58 @@ stages:
             displayName: Install terraform
             inputs:
               terraformVersion: 'latest'
-          
+          - task: TerraformTaskV4@4
+            displayName: Terraform Initial
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'ado'
+              backendAzureRmResourceGroupName: 'terraform-storage-rg'
+              backendAzureRmStorageAccountName: 'terraformstategop'
+              backendAzureRmContainerName: 'terraform-state'
+              backendAzureRmKey: 'tfstate'
+          - task: TerraformTaskV4@4
+            displayName: validate my code
+            inputs:
+              provider: 'azurerm'
+              command: 'validate'
+          - task: TerraformTaskV4@4
+            displayName: Planning to go to moon
+            inputs:
+              provider: 'azurerm'
+              command: 'plan'
+              environmentServiceNameAzureRM: 'ado'
+  - stage: tfapproval
+    jobs:
+        - job: approval
+          pool: server  
+          steps:
+            - task: ManualValidation@0
+              displayName: please approve the task then only apply will work
+              inputs:
+                notifyUsers: 'gopal1409@gmail.com'
+                instructions: 'please approve it'
+  - stage: tfapply
+    jobs:
+        - job: apply
+          pool: default
+          steps:
+            
+            - task: TerraformInstaller@1
+              inputs:
+                terraformVersion: 'latest'
+            - task: TerraformTaskV4@4
+              inputs:
+                provider: 'azurerm'
+                command: 'init'
+                backendServiceArm: 'ado'
+                backendAzureRmResourceGroupName: 'terraform-storage-rg'
+                backendAzureRmStorageAccountName: 'terraformstategop'
+                backendAzureRmContainerName: 'terraform-state'
+                backendAzureRmKey: 'tfstate'
+            - task: TerraformTaskV4@4
+              displayName: Reached Moon at 8
+              inputs:
+                provider: 'azurerm'
+                command: 'apply'
+                environmentServiceNameAzureRM: 'ado'
