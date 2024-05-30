@@ -20,3 +20,5 @@ cat C:\Users\gopal/.ssh/id_rsa.pub
   11 git commit -m "terraform with azure devops"
   ##finally the git status will show me a new commit
   12 git status
+  ## this will show me the repo
+  git log
