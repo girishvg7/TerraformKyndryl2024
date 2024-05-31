@@ -1,0 +1,9 @@
+@@we will create a folder
+in desktop -create a folder called as vnet-modules-network
+##once you create this open visual studio code
+inside the vnet-modules-network
+we will create 4 files
+1. output.tf 
+2. main.tf 
+3. provider.tf 
+4. variables.tf 
