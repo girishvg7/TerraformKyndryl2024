@@ -1,0 +1,81 @@
+# Starter pipeline
+
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool: default
+ # vmImage: ubuntu-latest
+
+stages:
+  - stage: tfvalidate
+    jobs:
+      - job: validate
+        steps: 
+          - task: CmdLine@2
+            inputs:
+              script: 'sudo apt install unzip'
+          - task: TerraformInstaller@1
+            displayName: Install terraform
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformTaskV4@4
+            displayName: Terraform Initial
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'ado'
+              backendAzureRmResourceGroupName: 'terraform-storage-rg'
+              backendAzureRmStorageAccountName: 'terraformstategop'
+              backendAzureRmContainerName: 'terraform-state'
+              backendAzureRmKey: 'tfstate'
+          - task: TerraformTaskV4@4
+            displayName: validate my code
+            inputs:
+              provider: 'azurerm'
+              command: 'validate'
+          - task: TerraformTaskV4@4
+            displayName: Planning to go to moon
+            inputs:
+              provider: 'azurerm'
+              command: 'plan'
+              environmentServiceNameAzureRM: 'ado'
+  - stage: tfapproval
+    jobs:
+        - job: approval_to_destroy
+          pool: server  
+          timeoutInMinutes: 1
+          steps:
+            - task: ManualValidation@0
+              displayName: please approve the task then only apply will work
+              inputs:
+                notifyUsers: 'gopal1409@gmail.com'
+                instructions: 'please approve it'
+                onTimeout: reject
+  - stage: tfdestroy
+    jobs:
+        - job: Destroy
+          pool: default
+          steps:
+            
+            - task: TerraformInstaller@1
+              inputs:
+                terraformVersion: 'latest'
+            - task: TerraformTaskV4@4
+              inputs:
+                provider: 'azurerm'
+                command: 'init'
+                backendServiceArm: 'ado'
+                backendAzureRmResourceGroupName: 'terraform-storage-rg'
+                backendAzureRmStorageAccountName: 'terraformstategop'
+                backendAzureRmContainerName: 'terraform-state'
+                backendAzureRmKey: 'tfstate'
+            - task: TerraformTaskV4@4
+              displayName: Reached Moon at 8
+              inputs:
+                provider: 'azurerm'
+                command: 'destroy'
+                environmentServiceNameAzureRM: 'ado'
