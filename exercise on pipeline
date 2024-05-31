@@ -17,3 +17,14 @@ git push origin master
 ####check the resource in azure portal
 ####then run the destroy pipeline approve it the resource will be destroy
 ##verify the same using azure portal
+
+##how to disable a pipeline trigger
+##go to destroy pipeline yaml file 
+make the trigger as none
+trigger: none
+- master
+######after that 
+git add .
+git commit -m "disable the destroy trigger"
+git push origin master
+####you can check that destroy pipeline not execute
