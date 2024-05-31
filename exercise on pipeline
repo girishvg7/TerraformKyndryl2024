@@ -1,0 +1,19 @@
+open visual studio code
+inside the manifest folder
+#########do git pull
+git pull 
+###3then modify a file 
+c4.vm.tf
+####at the end put a new tag
+tags = local.common_tags
+#####once done 
+git status 
+####this will show you that the file has been modify
+git add .
+git commit -m "added tags in vm file"
+git push origin master
+########this will upload the code and the trigger for the apply pipeline will execute
+####open the apply pipeline and approve it. 
+####check the resource in azure portal
+####then run the destroy pipeline approve it the resource will be destroy
+##verify the same using azure portal
